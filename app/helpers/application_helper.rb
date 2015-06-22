@@ -1,6 +1,7 @@
 module ApplicationHelper
 
     # Returns the full title on a per-page basis.
+    # The full_title method is automatically available in all our views.
     def full_title(page_title = '')
        base_title = "Microblobs App"
        if page_title.empty?
