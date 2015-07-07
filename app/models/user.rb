@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   
+  has_many :microposts, dependent: :destroy
+  
   attr_accessor :remember_token
   
   has_secure_password
@@ -42,5 +44,10 @@ class User < ActiveRecord::Base
   # Forgets a user.
   def forget
     update_attribute(:remember_digest, nil)
+  end
+  
+  def feed
+    # The ? ensures that id is properly escaped
+    Micropost.where("user_id = ?", id)
   end
 end
